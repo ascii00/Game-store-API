@@ -71,17 +71,6 @@ public class JwtServiceImp implements JwtService {
     }
 
     @Override
-    public String generatePasswordResetToken(UserDetails userDetails) {
-        return Jwts.builder()
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME_PASSWORD_RESET))
-                .claim("token_type", "password_reset")
-                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-                .compact();
-    }
-
-    @Override
     public void revokeAllUserTokens(User user, ETokenType tokenType) {
         List<Token> validUserTokens = tokenRepository.findAllValidTokensByUser(user.getId());
         if (validUserTokens.isEmpty())
@@ -122,12 +111,6 @@ public class JwtServiceImp implements JwtService {
     public boolean isEmailToken(String jwt) {
         Claims claims = extractAllClaims(jwt);
         return claims.get("token_type", String.class).equals("email_confirmation");
-    }
-
-    @Override
-    public boolean isPasswordToken(String jwt){
-        Claims claims = extractAllClaims(jwt);
-        return claims.get("token_type", String.class).equals("password_reset");
     }
 
     private boolean isTokenExpired(String token) {

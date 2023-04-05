@@ -49,7 +49,6 @@ public class ExceptionHandlerController {
         String message = e.getMessage() == null ? e.toString() : e + " " + e.getMessage();
         message = message + "\n" + Arrays.toString(e.getStackTrace());
         message = message.length() > 1000 ? message.substring(0, 1000) : message;
-        System.out.println(6);
         return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ErrorResponse(message));
     }
 }

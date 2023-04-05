@@ -1,4 +1,4 @@
-package com.store.game.security;
+package com.store.game.models.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
