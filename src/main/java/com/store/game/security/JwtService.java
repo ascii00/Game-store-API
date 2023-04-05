@@ -11,7 +11,5 @@ public interface JwtService {
     void revokeAllUserTokens(User user, ETokenType tokenType);
     boolean isTokenValid(String jwt, UserDetails userDetails);
     boolean isEmailToken(String jwt);
-    boolean isPasswordToken(String jwt);
     void saveUserToken(User user, String jwtToken, ETokenType tokenType);
-    String generatePasswordResetToken(UserDetails userDetails);
 }

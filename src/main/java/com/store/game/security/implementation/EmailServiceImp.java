@@ -7,8 +7,11 @@ import com.store.game.security.EmailService;
 import com.store.game.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +35,9 @@ public class EmailServiceImp implements EmailService {
 
     @Override
     public void confirmEmail(String token) {
+        if (token == null || token.isEmpty()) {
+            throw new IllegalArgumentException("Token is empty");
+        }
         final String userEmail;
         userEmail = jwtService.extractUsername(token);
         if (userEmail != null) {
@@ -45,15 +51,5 @@ public class EmailServiceImp implements EmailService {
         } else {
             throw new UsernameNotFoundException("User not found");
         }
-    }
-
-    public void sendResetPasswordEmail(User user) {
-        String resetPasswordToken = jwtService.generatePasswordResetToken(user);
-        String resetPasswordLink = domain + "/api/user/password-reset-confirm/" + resetPasswordToken;
-        emailSender.sendEmail(
-                user.getEmail(),
-                "Reset your password",
-                "Please, reset your password by clicking on the link: " + resetPasswordLink);
-        jwtService.saveUserToken(user, resetPasswordToken, ETokenType.RESET_PASSWORD);
     }
 }

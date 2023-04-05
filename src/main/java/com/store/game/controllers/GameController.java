@@ -1,11 +1,14 @@
 package com.store.game.controllers;
 
+import com.store.game.models.DTO.GameCreate;
 import com.store.game.models.DTO.GameUpdate;
 import com.store.game.models.Game;
 import com.store.game.response.SuccessResponse;
 import com.store.game.services.GameService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.store.game.response.Response;
 
@@ -35,21 +38,21 @@ public class GameController {
     }
 
     @PostMapping
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Response> createGame(@RequestBody Game game) {
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Response> createGame(@RequestBody GameCreate game) {
         gameService.create(game);
-        return ResponseEntity.ok().body(new SuccessResponse<>(null));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse<>(null));
     }
 
     @PutMapping("/{id}")
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Response> updateGame(@PathVariable Integer id, @RequestBody GameUpdate game) {
         gameService.update(id, game);
         return ResponseEntity.ok().body(new SuccessResponse<>(null));
     }
 
     @DeleteMapping("/{id}")
-    //PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Response> deleteGame(@PathVariable Integer id) {
         gameService.deleteById(id);
         return ResponseEntity.ok().body(new SuccessResponse<>(null));

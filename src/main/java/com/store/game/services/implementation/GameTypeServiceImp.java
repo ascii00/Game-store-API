@@ -26,4 +26,16 @@ public class GameTypeServiceImp implements GameTypeService {
     public Iterable<GameType> getAll() {
         return gameTypeRepository.findAll();
     }
+
+    @Override
+    public void create(GameType gameType) {
+        gameTypeRepository.save(gameType);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        if (gameTypeRepository.findById(id).isEmpty())
+            throw new IllegalArgumentException("Game type not found");
+        gameTypeRepository.deleteById(id);
+    }
 }

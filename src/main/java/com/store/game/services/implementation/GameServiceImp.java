@@ -1,5 +1,6 @@
 package com.store.game.services.implementation;
 
+import com.store.game.models.DTO.GameCreate;
 import com.store.game.models.DTO.GameUpdate;
 import com.store.game.models.Game;
 import com.store.game.models.GameType;
@@ -37,12 +38,19 @@ public class GameServiceImp implements GameService {
         return gameRepository.findAll();
     }
 
-    public void create(Game game) {
-        gameRepository.save(game);
+    public void create(GameCreate game) {
+        Optional<GameType> gameType = Optional.ofNullable(gameTypeRepository.findByName(game.getGameType()));
+        if (gameType.isEmpty()) {
+            throw new IllegalArgumentException("Game type not found");
+        }
+        Game newGame = new Game(game.getName(),
+                                game.getDescription(),
+                                game.getPrice(),
+                                gameType.get());
+        gameRepository.save(newGame);
     }
 
     public void deleteById(int id) {
-        gameRepository.findById(id);
         if (gameRepository.findById(id).isEmpty()){
             throw new IllegalArgumentException("Game not found");
         }

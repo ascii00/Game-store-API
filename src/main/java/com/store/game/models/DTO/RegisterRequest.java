@@ -1,4 +1,4 @@
-package com.store.game.security.implementation;
+package com.store.game.models.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,9 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
     private String email;
     private String password;
 }

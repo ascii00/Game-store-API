@@ -4,10 +4,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SecurityTools {
-    public boolean isValidPhone(String phone) {
-        return phone.matches("^\\+?[0-9\\s]*$");
-    }
-
     public boolean isValidPassword(String password) {
         if(password == null || password.length() < 8) {
             return false;
