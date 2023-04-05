@@ -4,4 +4,5 @@ import com.store.game.models.Game;
 
 public interface GameService {
     Game getById(int id);
+    Game getByName(String name);
 }

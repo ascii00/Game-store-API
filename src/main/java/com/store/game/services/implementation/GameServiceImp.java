@@ -18,4 +18,9 @@ public class GameServiceImp implements GameService {
         Optional<Game> game = gameRepository.findById(id);
         return game.orElse(null);
     }
+
+    public Game getByName(String name) {
+        Optional<Game> game = Optional.ofNullable(gameRepository.findByName(name));
+        return game.orElse(null);
+    }
 }

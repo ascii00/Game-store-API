@@ -20,9 +20,18 @@ public class GameController {
 
     private final GameService service;
 
-    @GetMapping("/{id}")
+    @GetMapping("/byId/{id}")
     public ResponseEntity<Response> getById(@PathVariable Integer id) {
         Game game = service.getById(id);
+        if (game == null) {
+            return ResponseEntity.status(NOT_FOUND).body(new FailResponse<>("Game not found"));
+        }
+        return ResponseEntity.ok().body(new SuccessResponse<>(game));
+    }
+
+    @GetMapping("/byName/{name}")
+    public ResponseEntity<Response> getByName(@PathVariable String name) {
+        Game game = service.getByName(name);
         if (game == null) {
             return ResponseEntity.status(NOT_FOUND).body(new FailResponse<>("Game not found"));
         }
