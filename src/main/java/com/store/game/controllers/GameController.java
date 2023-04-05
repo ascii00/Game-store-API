@@ -1,41 +1,57 @@
 package com.store.game.controllers;
 
+import com.store.game.models.DTO.GameUpdate;
 import com.store.game.models.Game;
-import com.store.game.response.FailResponse;
 import com.store.game.response.SuccessResponse;
 import com.store.game.services.GameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.store.game.response.Response;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/v1/game")
 @RequiredArgsConstructor
 public class GameController {
 
-    private final GameService service;
+    private final GameService gameService;
 
     @GetMapping("/byId/{id}")
     public ResponseEntity<Response> getById(@PathVariable Integer id) {
-        Game game = service.getById(id);
-        if (game == null) {
-            return ResponseEntity.status(NOT_FOUND).body(new FailResponse<>("Game not found"));
-        }
+        Game game = gameService.getById(id);
         return ResponseEntity.ok().body(new SuccessResponse<>(game));
     }
 
     @GetMapping("/byName/{name}")
     public ResponseEntity<Response> getByName(@PathVariable String name) {
-        Game game = service.getByName(name);
-        if (game == null) {
-            return ResponseEntity.status(NOT_FOUND).body(new FailResponse<>("Game not found"));
-        }
+        Game game = gameService.getByName(name);
         return ResponseEntity.ok().body(new SuccessResponse<>(game));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<Response> getAll() {
+        Iterable<Game> games = gameService.getAll();
+        return ResponseEntity.ok().body(new SuccessResponse<>(games));
+    }
+
+    @PostMapping
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Response> createGame(@RequestBody Game game) {
+        gameService.create(game);
+        return ResponseEntity.ok().body(new SuccessResponse<>(null));
+    }
+
+    @PutMapping("/{id}")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Response> updateGame(@PathVariable Integer id, @RequestBody GameUpdate game) {
+        gameService.update(id, game);
+        return ResponseEntity.ok().body(new SuccessResponse<>(null));
+    }
+
+    @DeleteMapping("/{id}")
+    //PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Response> deleteGame(@PathVariable Integer id) {
+        gameService.deleteById(id);
+        return ResponseEntity.ok().body(new SuccessResponse<>(null));
+    }
 }
