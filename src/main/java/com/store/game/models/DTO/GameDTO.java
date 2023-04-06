@@ -1,11 +1,13 @@
 package com.store.game.models.DTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class GameUpdate {
+@AllArgsConstructor
+public class GameDTO {
     private String name;
     private String description;
     private Double price;
-    private String type;
+    private String gameType;
 }

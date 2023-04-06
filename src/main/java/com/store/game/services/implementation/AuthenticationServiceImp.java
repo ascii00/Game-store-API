@@ -1,6 +1,7 @@
 package com.store.game.services.implementation;
 
 import com.store.game.models.DTO.AuthenticationRequest;
+import com.store.game.models.DTO.AuthenticationResponse;
 import com.store.game.models.Role;
 import com.store.game.models.User;
 import com.store.game.models.enums.ERole;
