@@ -7,6 +7,7 @@ import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
+import com.sendgrid.helpers.mail.objects.Personalization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
@@ -21,11 +22,19 @@ public class EmailSender {
         this.sendGrid = sendGrid;
     }
 
-    public void sendEmail(String to, String subject, String content) {
-        Content contentEmail = new Content("text/plain", content);
-        Email fromEmail = new Email("stock.market.supp@gmail.com");
+    public void sendEmail(String to, String subject, String content, String templateId) {
+        Email fromEmail = new Email("ascii.test.api@gmail.com");
         Email toEmail = new Email(to);
-        Mail mail = new Mail(fromEmail, subject, toEmail, contentEmail);
+
+        Personalization personalization = new Personalization();
+        personalization.addTo(toEmail);
+        personalization.setSubject(subject);
+        personalization.addDynamicTemplateData("content", content);
+
+        Mail mail = new Mail();
+        mail.setFrom(fromEmail);
+        mail.addPersonalization(personalization);
+        mail.setTemplateId(templateId);
 
         Request request = new Request();
         try {

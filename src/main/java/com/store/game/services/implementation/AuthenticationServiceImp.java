@@ -75,9 +75,4 @@ public class AuthenticationServiceImp implements AuthenticationService {
             throw new UsernameNotFoundException("Invalid email or password");
         }
     }
-
-    public Role getRole(ERole name) {
-        return roleRepository.findByName(name)
-                .orElseThrow();
-    }
 }
