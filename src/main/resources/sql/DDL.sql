@@ -33,7 +33,7 @@ CREATE TABLE Token (
 );
 
 -- Table: User
-CREATE TABLE User (
+CREATE TABLE Users (
     ID int  NOT NULL AUTO_INCREMENT,
     email varchar(50)  NOT NULL,
     password varchar(500)  NOT NULL,
@@ -55,7 +55,7 @@ ALTER TABLE Game ADD CONSTRAINT Game_Game_Type FOREIGN KEY Game_Game_Type (game_
 
 -- Reference: Token_User (table: Token)
 ALTER TABLE Token ADD CONSTRAINT Token_User FOREIGN KEY Token_User (user_ID)
-    REFERENCES User (ID);
+    REFERENCES Users (ID);
 
 -- Reference: User_Role_Role (table: User_Role)
 ALTER TABLE User_Role ADD CONSTRAINT User_Role_Role FOREIGN KEY User_Role_Role (role_ID)
@@ -63,4 +63,4 @@ ALTER TABLE User_Role ADD CONSTRAINT User_Role_Role FOREIGN KEY User_Role_Role (
 
 -- Reference: User_Role_User (table: User_Role)
 ALTER TABLE User_Role ADD CONSTRAINT User_Role_User FOREIGN KEY User_Role_User (user_ID)
-    REFERENCES User (ID);
+    REFERENCES Users (ID);

@@ -26,8 +26,7 @@ public class EmailServiceImp implements EmailService {
         emailSender.sendEmail(
                 user.getEmail(),
                 "Confirm your email",
-                confirmEmailLink,
-                "d-80cd780a6bb548e794b400d938100e11");
+                "Please, confirm your email by clicking on the link: " + confirmEmailLink);
         jwtService.saveUserToken(user, confirmationToken, ETokenType.CONFIRMATION);
     }
 

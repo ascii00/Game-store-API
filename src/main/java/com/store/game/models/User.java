@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Data
 @Entity
-@Table(name = "User", uniqueConstraints = {
+@Table(name = "Users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
 public class User implements UserDetails {
