@@ -4,10 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 import jakarta.validation.constraints.*;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "Game")
 public class Game {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -31,6 +34,9 @@ public class Game {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "game_type_ID")
     private GameType gameType;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "game")
+    private List<Review> reviews;
 
     public Game() {
     }

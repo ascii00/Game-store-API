@@ -5,7 +5,7 @@ import com.store.game.models.Game;
 
 public interface GameService {
     Game getById(int id);
-    Game getByName(String name);
+    Iterable<Game> getByName(String name);
     Iterable<Game> getAll();
     void update(int id, GameDTO newGame);
     void create(GameDTO game);

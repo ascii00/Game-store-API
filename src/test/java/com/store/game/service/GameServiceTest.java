@@ -55,21 +55,16 @@ public class GameServiceTest {
     @Test
     void getByName() {
         GameType gameType = new GameType("RPG");
-        Game game = new Game("TestGame", "TestDesc", 1.50, gameType);
-        game.setId(1);
+        Game game1 = new Game("TestGame1", "TestDesc1", 1.50, gameType);
+        Game game2 = new Game("TestGame2", "TestDesc2", 1.50, gameType);
 
-        when(gameRepository.findByName("TestGame")).thenReturn(game);
-        Game result = gameService.getByName("TestGame");
+        List<Game> games = Arrays.asList(game1, game2);
 
-        assertEquals(game, result);
-        verify(gameRepository, times(1)).findByName("TestGame");
-    }
+        when(gameRepository.findByNameContaining("TestGame")).thenReturn(games);
+        Iterable<Game> result = gameService.getByName("TestGame");
 
-    @Test
-    void getByNameNotFound() {
-        when(gameRepository.findByName("TestGame")).thenReturn(null);
-
-        assertThrows(IllegalArgumentException.class, () -> gameService.getByName("TestGame"));
+        assertEquals(games, result);
+        verify(gameRepository, times(1)).findByNameContaining("TestGame");
     }
 
     @Test

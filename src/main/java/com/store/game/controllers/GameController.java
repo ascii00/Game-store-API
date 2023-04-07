@@ -4,6 +4,7 @@ import com.store.game.models.DTO.GameDTO;
 import com.store.game.models.Game;
 import com.store.game.response.SuccessResponse;
 import com.store.game.services.GameService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,8 @@ public class GameController {
 
     @GetMapping("/byName/{name}")
     public ResponseEntity<Response> getByName(@PathVariable String name) {
-        Game game = gameService.getByName(name);
-        return ResponseEntity.ok().body(new SuccessResponse<>(game));
+        Iterable<Game> games = gameService.getByName(name);
+        return ResponseEntity.ok().body(new SuccessResponse<>(games));
     }
 
     @GetMapping("/all")
@@ -38,14 +39,14 @@ public class GameController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Response> createGame(@RequestBody GameDTO game) {
+    public ResponseEntity<Response> createGame(@Valid @RequestBody GameDTO game) {
         gameService.create(game);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse<>(null));
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Response> updateGame(@PathVariable Integer id, @RequestBody GameDTO game) {
+    public ResponseEntity<Response> updateGame(@PathVariable Integer id, @Valid @RequestBody GameDTO game) {
         gameService.update(id, game);
         return ResponseEntity.ok().body(new SuccessResponse<>(null));
     }

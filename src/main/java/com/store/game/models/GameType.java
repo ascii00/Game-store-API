@@ -9,6 +9,7 @@ import lombok.Data;
 @Entity
 @Table(name = "Game_Type")
 public class GameType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
