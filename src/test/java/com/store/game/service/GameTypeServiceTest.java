@@ -52,11 +52,12 @@ public class GameTypeServiceTest {
 
         List<GameType> gameTypes = Arrays.asList(gameType1, gameType2);
         when(gameTypeRepository.findAll()).thenReturn(gameTypes);
-
         Iterable<GameType> result = gameTypeService.getAll();
+
         assertEquals(gameTypes, result);
         verify(gameTypeRepository, times(1)).findAll();
     }
+
     @Test
     void create() {
         GameType gameType = new GameType("RPG");

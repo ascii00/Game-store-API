@@ -67,6 +67,7 @@ public class GameServiceImp implements GameService {
         }
         Game game = gameToEdit.get();
         game.setName(newGame.getName());
+        game.setDescription(newGame.getDescription());
         game.setPrice(newGame.getPrice());
         game.setGameType(gameType.get());
         gameRepository.save(game);
