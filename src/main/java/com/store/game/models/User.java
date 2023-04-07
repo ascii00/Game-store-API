@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
         @UniqueConstraint(columnNames = "email")
 })
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

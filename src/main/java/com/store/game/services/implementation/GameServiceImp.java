@@ -25,12 +25,8 @@ public class GameServiceImp implements GameService {
         return game.get();
     }
 
-    public Game getByName(String name) {
-        Optional<Game> game = Optional.ofNullable(gameRepository.findByName(name));
-        if (game.isEmpty()) {
-            throw new IllegalArgumentException("Game not found");
-        }
-        return game.get();
+    public Iterable<Game> getByName(String name) {
+        return gameRepository.findByNameContaining(name);
     }
 
     public Iterable<Game> getAll() {
