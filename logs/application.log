@@ -1,0 +1,194 @@
+2023-04-07 12:38:29.579 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Starting GameStoreApiApplication using Java 17.0.5 with PID 13056 (C:\Users\maxim\Desktop\game-store-API\target\classes started by maxim in C:\Users\maxim\Desktop\game-store-API)
+2023-04-07 12:38:29.581 [restartedMain] INFO  c.store.game.GameStoreApiApplication - No active profile set, falling back to 1 default profile: "default"
+2023-04-07 12:38:29.607 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-07 12:38:29.607 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-07 12:38:30.012 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-07 12:38:30.054 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 5 JPA repository interfaces.
+2023-04-07 12:38:30.498 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-04-07 12:38:30.504 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-04-07 12:38:30.505 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-07 12:38:30.543 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-04-07 12:38:30.543 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 936 ms
+2023-04-07 12:38:30.608 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-04-07 12:38:30.719 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@12cfc8b7
+2023-04-07 12:38:30.721 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-04-07 12:38:30.745 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-07 12:38:30.774 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-07 12:38:30.981 [restartedMain] INFO  SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-04-07 12:38:31.519 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-07 12:38:31.525 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:38:32.134 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-07 12:38:32.326 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@467ae70d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@68a8152b, org.springframework.security.web.context.SecurityContextHolderFilter@f785ba6, org.springframework.security.web.header.HeaderWriterFilter@4547a41e, org.springframework.security.web.authentication.logout.LogoutFilter@67b6f16f, com.store.game.security.implementation.JwtAuthenticationFilter@74153bfe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48467c92, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b093d5c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@cbb6af8, org.springframework.security.web.session.SessionManagementFilter@1b16801a, org.springframework.security.web.access.ExceptionTranslationFilter@74e854d1, org.springframework.security.web.access.intercept.AuthorizationFilter@550f6e7f]
+2023-04-07 12:38:32.474 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-04-07 12:38:32.499 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-07 12:38:32.505 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Started GameStoreApiApplication in 3.234 seconds (process running for 3.647)
+2023-04-07 12:38:47.585 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-07 12:38:47.585 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-04-07 12:38:47.587 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2023-04-07 12:38:47.851 [http-nio-8080-exec-2] ERROR c.s.g.c.ExceptionHandlerController - UsernameNotFoundException occurred: Invalid email or password
+2023-04-07 12:38:47.871 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.security.core.userdetails.UsernameNotFoundException: Invalid email or password]
+2023-04-07 12:39:20.237 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:39:20.239 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-04-07 12:39:20.244 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-04-07 12:46:24.685 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Starting GameStoreApiApplication using Java 17.0.5 with PID 26424 (C:\Users\maxim\Desktop\game-store-API\target\classes started by maxim in C:\Users\maxim\Desktop\game-store-API)
+2023-04-07 12:46:24.687 [restartedMain] INFO  c.store.game.GameStoreApiApplication - No active profile set, falling back to 1 default profile: "default"
+2023-04-07 12:46:24.712 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-07 12:46:24.713 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-07 12:46:25.131 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-07 12:46:25.176 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 5 JPA repository interfaces.
+2023-04-07 12:46:25.631 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-04-07 12:46:25.637 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-04-07 12:46:25.637 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-07 12:46:25.675 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-04-07 12:46:25.676 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 963 ms
+2023-04-07 12:46:25.742 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-04-07 12:46:25.849 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@12cfc8b7
+2023-04-07 12:46:25.850 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-04-07 12:46:25.875 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-07 12:46:25.905 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-07 12:46:26.108 [restartedMain] INFO  SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-04-07 12:46:26.665 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-07 12:46:26.671 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:46:27.284 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-07 12:46:27.475 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@467ae70d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@68a8152b, org.springframework.security.web.context.SecurityContextHolderFilter@f785ba6, org.springframework.security.web.header.HeaderWriterFilter@4547a41e, org.springframework.security.web.authentication.logout.LogoutFilter@67b6f16f, com.store.game.security.implementation.JwtAuthenticationFilter@74153bfe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48467c92, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b093d5c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@cbb6af8, org.springframework.security.web.session.SessionManagementFilter@1b16801a, org.springframework.security.web.access.ExceptionTranslationFilter@74e854d1, org.springframework.security.web.access.intercept.AuthorizationFilter@550f6e7f]
+2023-04-07 12:46:27.626 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-04-07 12:46:27.652 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-07 12:46:27.659 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Started GameStoreApiApplication in 3.283 seconds (process running for 3.688)
+2023-04-07 12:46:39.791 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-07 12:46:39.792 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-04-07 12:46:39.793 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-04-07 12:46:39.865 [http-nio-8080-exec-1] INFO  c.s.g.s.i.AuthenticationServiceImp - Authenticating user with email: teest@email.com
+2023-04-07 12:46:40.061 [http-nio-8080-exec-1] ERROR c.s.g.s.i.AuthenticationServiceImp - Invalid email or password for email: teest@email.com
+2023-04-07 12:46:40.062 [http-nio-8080-exec-1] WARN  c.s.g.c.ExceptionHandlerController - UsernameNotFoundException occurred: Invalid email or password
+2023-04-07 12:46:40.083 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.security.core.userdetails.UsernameNotFoundException: Invalid email or password]
+2023-04-07 12:46:51.429 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:46:51.431 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-04-07 12:46:51.436 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-04-07 12:50:23.480 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Starting GameStoreApiApplication using Java 17.0.5 with PID 16872 (C:\Users\maxim\Desktop\game-store-API\target\classes started by maxim in C:\Users\maxim\Desktop\game-store-API)
+2023-04-07 12:50:23.482 [restartedMain] INFO  c.store.game.GameStoreApiApplication - No active profile set, falling back to 1 default profile: "default"
+2023-04-07 12:50:23.509 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-07 12:50:23.509 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-07 12:50:23.920 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-07 12:50:23.968 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 5 JPA repository interfaces.
+2023-04-07 12:50:24.419 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-04-07 12:50:24.426 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-04-07 12:50:24.426 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-07 12:50:24.465 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-04-07 12:50:24.465 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 955 ms
+2023-04-07 12:50:24.534 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-04-07 12:50:24.631 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@231d20cb
+2023-04-07 12:50:24.633 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-04-07 12:50:24.658 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-07 12:50:24.688 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-07 12:50:24.895 [restartedMain] INFO  SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-04-07 12:50:25.441 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-07 12:50:25.446 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:50:26.068 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-07 12:50:26.264 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4f9ce602, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b8ee3f3, org.springframework.security.web.context.SecurityContextHolderFilter@4d5e13b8, org.springframework.security.web.header.HeaderWriterFilter@4876ec69, org.springframework.security.web.authentication.logout.LogoutFilter@3d965b8c, com.store.game.security.implementation.JwtAuthenticationFilter@28fc827a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@36ab28fb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6af1d1ff, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2f96519c, org.springframework.security.web.session.SessionManagementFilter@297cef3b, org.springframework.security.web.access.ExceptionTranslationFilter@190bd8d8, org.springframework.security.web.access.intercept.AuthorizationFilter@40808ac8]
+2023-04-07 12:50:26.414 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-04-07 12:50:26.438 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-07 12:50:26.445 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Started GameStoreApiApplication in 3.278 seconds (process running for 3.676)
+2023-04-07 12:50:37.389 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-07 12:50:37.390 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-04-07 12:50:37.391 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-04-07 12:50:38.178 [http-nio-8080-exec-1] INFO  c.s.g.s.implementation.EmailSender - 400 {"errors":[{"message":"The from email does not contain a valid address.","field":"from.email","help":"http://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/errors.html#message.from"}]} {Strict-Transport-Security=max-age=600; includeSubDomains, Server=nginx, Access-Control-Allow-Origin=https://sendgrid.api-docs.io, Access-Control-Allow-Methods=POST, Connection=keep-alive, X-No-CORS-Reason=https://sendgrid.com/docs/Classroom/Basics/API/cors.html, Content-Length=185, Access-Control-Max-Age=600, Date=Fri, 07 Apr 2023 10:50:38 GMT, Access-Control-Allow-Headers=Authorization, Content-Type, On-behalf-of, x-sg-elas-acl, Content-Type=application/json}
+2023-04-07 12:50:38.183 [http-nio-8080-exec-1] INFO  c.s.g.s.i.AuthenticationServiceImp - User registration successful with email: hiwop92838@cyclesat.com
+2023-04-07 12:51:15.466 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:51:15.469 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-04-07 12:51:15.473 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-04-07 12:51:33.360 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Starting GameStoreApiApplication using Java 17.0.5 with PID 4364 (C:\Users\maxim\Desktop\game-store-API\target\classes started by maxim in C:\Users\maxim\Desktop\game-store-API)
+2023-04-07 12:51:33.362 [restartedMain] INFO  c.store.game.GameStoreApiApplication - No active profile set, falling back to 1 default profile: "default"
+2023-04-07 12:51:33.388 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-07 12:51:33.388 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-07 12:51:33.816 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-07 12:51:33.866 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 5 JPA repository interfaces.
+2023-04-07 12:51:34.328 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-04-07 12:51:34.334 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-04-07 12:51:34.334 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-07 12:51:34.376 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-04-07 12:51:34.377 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 988 ms
+2023-04-07 12:51:34.446 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-04-07 12:51:34.551 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c6ff560
+2023-04-07 12:51:34.553 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-04-07 12:51:34.578 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-07 12:51:34.606 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-07 12:51:34.812 [restartedMain] INFO  SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-04-07 12:51:35.372 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-07 12:51:35.379 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:51:35.990 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-07 12:51:36.188 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4949f1de, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6382bded, org.springframework.security.web.context.SecurityContextHolderFilter@15b6c1bd, org.springframework.security.web.header.HeaderWriterFilter@36f6850, org.springframework.security.web.authentication.logout.LogoutFilter@6af1d1ff, com.store.game.security.implementation.JwtAuthenticationFilter@d67446a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6a1639aa, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4876ec69, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1f1a9e74, org.springframework.security.web.session.SessionManagementFilter@1fa26279, org.springframework.security.web.access.ExceptionTranslationFilter@7dfce6c4, org.springframework.security.web.access.intercept.AuthorizationFilter@2840442e]
+2023-04-07 12:51:36.348 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-04-07 12:51:36.372 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-07 12:51:36.379 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Started GameStoreApiApplication in 3.342 seconds (process running for 3.773)
+2023-04-07 12:51:39.302 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-07 12:51:39.302 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-04-07 12:51:39.303 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-04-07 12:51:40.019 [http-nio-8080-exec-2] INFO  c.s.g.s.implementation.EmailSender - 400 {"errors":[{"message":"The from email does not contain a valid address.","field":"from.email","help":"http://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/errors.html#message.from"}]} {Strict-Transport-Security=max-age=600; includeSubDomains, Server=nginx, Access-Control-Allow-Origin=https://sendgrid.api-docs.io, Access-Control-Allow-Methods=POST, Connection=keep-alive, X-No-CORS-Reason=https://sendgrid.com/docs/Classroom/Basics/API/cors.html, Content-Length=185, Access-Control-Max-Age=600, Date=Fri, 07 Apr 2023 10:51:39 GMT, Access-Control-Allow-Headers=Authorization, Content-Type, On-behalf-of, x-sg-elas-acl, Content-Type=application/json}
+2023-04-07 12:51:40.024 [http-nio-8080-exec-2] INFO  c.s.g.s.i.AuthenticationServiceImp - User registration successful with email: natijol831@djpich.com
+2023-04-07 12:54:15.112 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:54:15.115 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-04-07 12:54:15.118 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-04-07 12:54:19.281 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Starting GameStoreApiApplication using Java 17.0.5 with PID 896 (C:\Users\maxim\Desktop\game-store-API\target\classes started by maxim in C:\Users\maxim\Desktop\game-store-API)
+2023-04-07 12:54:19.283 [restartedMain] INFO  c.store.game.GameStoreApiApplication - No active profile set, falling back to 1 default profile: "default"
+2023-04-07 12:54:19.309 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-07 12:54:19.310 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-07 12:54:19.726 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-07 12:54:19.771 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 5 JPA repository interfaces.
+2023-04-07 12:54:20.224 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-04-07 12:54:20.232 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-04-07 12:54:20.232 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-07 12:54:20.269 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-04-07 12:54:20.270 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 960 ms
+2023-04-07 12:54:20.337 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-04-07 12:54:20.440 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@12cfc8b7
+2023-04-07 12:54:20.441 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-04-07 12:54:20.467 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-07 12:54:20.497 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-07 12:54:20.700 [restartedMain] INFO  SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-04-07 12:54:21.256 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-07 12:54:21.263 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:54:21.900 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-07 12:54:22.092 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7793b36, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55a8eaba, org.springframework.security.web.context.SecurityContextHolderFilter@b021eee, org.springframework.security.web.header.HeaderWriterFilter@4bfa07e2, org.springframework.security.web.authentication.logout.LogoutFilter@32126bac, com.store.game.security.implementation.JwtAuthenticationFilter@74153bfe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d0adecd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4360771, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@67b6f16f, org.springframework.security.web.session.SessionManagementFilter@4547a41e, org.springframework.security.web.access.ExceptionTranslationFilter@79d193db, org.springframework.security.web.access.intercept.AuthorizationFilter@6456caa1]
+2023-04-07 12:54:22.244 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-04-07 12:54:22.271 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-07 12:54:22.278 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Started GameStoreApiApplication in 3.326 seconds (process running for 3.755)
+2023-04-07 12:55:04.766 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-07 12:55:04.767 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-04-07 12:55:04.767 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2023-04-07 12:55:05.505 [http-nio-8080-exec-1] INFO  c.s.g.s.implementation.EmailSender - 202  {Strict-Transport-Security=max-age=600; includeSubDomains, Server=nginx, Access-Control-Allow-Origin=https://sendgrid.api-docs.io, Access-Control-Allow-Methods=POST, Connection=keep-alive, X-Message-Id=hX3WEmBpSqCVVij40AxDfA, X-No-CORS-Reason=https://sendgrid.com/docs/Classroom/Basics/API/cors.html, Content-Length=0, Access-Control-Max-Age=600, Date=Fri, 07 Apr 2023 10:55:05 GMT, Access-Control-Allow-Headers=Authorization, Content-Type, On-behalf-of, x-sg-elas-acl}
+2023-04-07 12:55:05.514 [http-nio-8080-exec-1] INFO  c.s.g.s.i.AuthenticationServiceImp - User registration successful with email: vamorop367@cyclesat.com
+2023-04-07 12:55:45.970 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:55:45.972 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-04-07 12:55:45.977 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-04-07 12:55:50.174 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Starting GameStoreApiApplication using Java 17.0.5 with PID 27480 (C:\Users\maxim\Desktop\game-store-API\target\classes started by maxim in C:\Users\maxim\Desktop\game-store-API)
+2023-04-07 12:55:50.176 [restartedMain] INFO  c.store.game.GameStoreApiApplication - No active profile set, falling back to 1 default profile: "default"
+2023-04-07 12:55:50.202 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-07 12:55:50.202 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-07 12:55:50.618 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-07 12:55:50.663 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 5 JPA repository interfaces.
+2023-04-07 12:55:51.114 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-04-07 12:55:51.122 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2023-04-07 12:55:51.122 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-07 12:55:51.162 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-04-07 12:55:51.162 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 959 ms
+2023-04-07 12:55:51.230 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-04-07 12:55:51.334 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@62299f0e
+2023-04-07 12:55:51.335 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-04-07 12:55:51.361 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-07 12:55:51.389 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-07 12:55:51.592 [restartedMain] INFO  SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-04-07 12:55:52.140 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-07 12:55:52.147 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:55:52.760 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-07 12:55:52.976 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@49ef0c68, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@62a3f637, org.springframework.security.web.context.SecurityContextHolderFilter@5230b2bb, org.springframework.security.web.header.HeaderWriterFilter@742fefa0, org.springframework.security.web.authentication.logout.LogoutFilter@38f60b64, com.store.game.security.implementation.JwtAuthenticationFilter@edca639, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@563f86a8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2725e0f0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b678e8e, org.springframework.security.web.session.SessionManagementFilter@48007b58, org.springframework.security.web.access.ExceptionTranslationFilter@753eb3d0, org.springframework.security.web.access.intercept.AuthorizationFilter@2a4024f6]
+2023-04-07 12:55:53.148 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2023-04-07 12:55:53.184 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-07 12:55:53.191 [restartedMain] INFO  c.store.game.GameStoreApiApplication - Started GameStoreApiApplication in 3.337 seconds (process running for 3.756)
+2023-04-07 12:56:17.090 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-07 12:56:17.091 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-04-07 12:56:17.092 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-04-07 12:56:17.805 [http-nio-8080-exec-1] INFO  c.s.g.s.implementation.EmailSender - 202  {Strict-Transport-Security=max-age=600; includeSubDomains, Server=nginx, Access-Control-Allow-Origin=https://sendgrid.api-docs.io, Access-Control-Allow-Methods=POST, Connection=keep-alive, X-Message-Id=HEy5sXL5QpCLWzOe5XQJzA, X-No-CORS-Reason=https://sendgrid.com/docs/Classroom/Basics/API/cors.html, Content-Length=0, Access-Control-Max-Age=600, Date=Fri, 07 Apr 2023 10:56:17 GMT, Access-Control-Allow-Headers=Authorization, Content-Type, On-behalf-of, x-sg-elas-acl}
+2023-04-07 12:56:17.809 [http-nio-8080-exec-1] INFO  c.s.g.s.i.AuthenticationServiceImp - User registration successful with email: wepov71252@duiter.com
+2023-04-07 12:56:44.355 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-07 12:56:44.358 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-04-07 12:56:44.363 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

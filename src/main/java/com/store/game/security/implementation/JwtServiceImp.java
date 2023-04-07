@@ -32,7 +32,6 @@ public class JwtServiceImp implements JwtService {
     private String SECRET_KEY;
     private static final long EXPIRATION_TIME_LOGIN = 1000 * 60 * 24 * 10; // s * m * h * d
     private static final long EXPIRATION_TIME_CONFIRM = 1000 * 60 * 24 * 10; // s * m * h * d
-    private static final long EXPIRATION_TIME_PASSWORD_RESET = 1000 * 60 * 24; // s * m * h * d
 
     @Override
     public String extractUsername(String token) {

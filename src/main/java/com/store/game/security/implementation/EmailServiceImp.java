@@ -7,11 +7,8 @@ import com.store.game.security.EmailService;
 import com.store.game.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +22,7 @@ public class EmailServiceImp implements EmailService {
     @Override
     public void sendConfirmationEmail(User user) {
         String confirmationToken = jwtService.generateConfirmationToken(user);
-        String confirmEmailLink = domain + "/api/auth/email-confirmation/" + confirmationToken;
+        String confirmEmailLink = domain + "/api/v1/auth/email-confirmation/" + confirmationToken;
         emailSender.sendEmail(
                 user.getEmail(),
                 "Confirm your email",

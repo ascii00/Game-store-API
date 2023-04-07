@@ -1,7 +1,6 @@
 package com.store.game.controllers;
 
-import com.store.game.models.DTO.GameCreate;
-import com.store.game.models.DTO.GameUpdate;
+import com.store.game.models.DTO.GameDTO;
 import com.store.game.models.Game;
 import com.store.game.response.SuccessResponse;
 import com.store.game.services.GameService;
@@ -39,14 +38,14 @@ public class GameController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Response> createGame(@RequestBody GameCreate game) {
+    public ResponseEntity<Response> createGame(@RequestBody GameDTO game) {
         gameService.create(game);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse<>(null));
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Response> updateGame(@PathVariable Integer id, @RequestBody GameUpdate game) {
+    public ResponseEntity<Response> updateGame(@PathVariable Integer id, @RequestBody GameDTO game) {
         gameService.update(id, game);
         return ResponseEntity.ok().body(new SuccessResponse<>(null));
     }

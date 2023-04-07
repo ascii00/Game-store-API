@@ -7,14 +7,19 @@ import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
+@Slf4j
 public class EmailSender {
 
     private final SendGrid sendGrid;
+    @Value("${email.from}")
+    private String emailFrom;
 
     @Autowired
     public EmailSender(SendGrid sendGrid) {
@@ -23,7 +28,7 @@ public class EmailSender {
 
     public void sendEmail(String to, String subject, String content) {
         Content contentEmail = new Content("text/plain", content);
-        Email fromEmail = new Email("stock.market.supp@gmail.com");
+        Email fromEmail = new Email(emailFrom);
         Email toEmail = new Email(to);
         Mail mail = new Mail(fromEmail, subject, toEmail, contentEmail);
 
@@ -33,12 +38,13 @@ public class EmailSender {
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
             Response response = sendGrid.api(request);
-            //log response
-            //System.out.println(response.getStatusCode());
-            //System.out.println(response.getBody());
-            //System.out.println(response.getHeaders());
+            log.info(response.getStatusCode() +
+                            " "
+                            + response.getBody() +
+                            " "
+                            + response.getHeaders());
         } catch (IOException ex) {
-            // log error
+            log.error(ex.getMessage(), ex);
         }
     }
 }
