@@ -1,6 +1,7 @@
 package com.store.game.services.implementation;
 
 import com.store.game.models.GameType;
+import com.store.game.repositories.GameRepository;
 import com.store.game.repositories.GameTypeRepository;
 import com.store.game.services.GameTypeService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class GameTypeServiceImp implements GameTypeService {
 
     private final GameTypeRepository gameTypeRepository;
+    private final GameRepository gameRepository;
 
     @Override
     public GameType getById(int id) {
@@ -38,8 +40,12 @@ public class GameTypeServiceImp implements GameTypeService {
 
     @Override
     public void deleteById(int id) {
-        if (gameTypeRepository.findById(id).isEmpty())
+        if (gameTypeRepository.findById(id).isEmpty()) {
             throw new NoSuchElementException("Game type not found");
+        }
+        if (gameRepository.findByGameTypeId(id).size() > 0) {
+            throw new IllegalArgumentException("Game type is used in games");
+        }
         gameTypeRepository.deleteById(id);
     }
 }
