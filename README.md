@@ -71,35 +71,26 @@ such as the token string, type, and whether it has been revoked or expired.
 
 ## API
 
-### Game
 | Request                          | Description | Access | Body                                    |
-|----------------------------------| --- | --- |-----------------------------------------|
+|----------------------------------| -- | --- |-----------------------------------------|
+| **Game**                         |  |  |   |
 | `GET /api/v1/game/all`           | Retrieves a list of all games | everyone | -                                       |
 | `GET /api/v1/game/byId/:id`      | Retrieves a game by its id | everyone | -                                       |
 | `GET /api/v1/game/byName/:name`  | Retrieves a game by its name | everyone | -                                       |
 | `PUT /api/v1/game/:id`           | Updates a game by its id | admin | ![json](https://i.ibb.co/Fht4C3M/1.png) |
 | `POST /api/v1/game`              | Creates a new game | admin | ![json](https://i.ibb.co/9hNYDzb/1.png) |
 | `DELETE /api/v1/game/:id`        | Deletes a game by its id | admin | -                                       |
-
-### Game Type
-| Request                          | Description | Access | Body                                    |
-|----------------------------------| --- | --- |-----------------------------------------|
+| **Game Type**                    |  |  | |
 | `GET /api/v1/gameType/all`       | Retrieves a list of all game types | everyone | -                                       |
 | `GET /api/v1/gameType/:id`       | Retrieves a game type by its id | everyone | -                                       |
 | `POST /api/v1/gameType/:id`      | Creates a new game type | admin | ![json](https://i.ibb.co/Kx0FGPW/1.png) |
 | `DELETE /api/v1/gameType/:id`    | Deletes a game type by its id | admin | -                                       |
-
-### Game Review
-| Request                          | Description | Access | Body                                    |
-|----------------------------------| --- | --- |-----------------------------------------|
+| **Review**                       |  |  | |
 | `GET /api/v1/review`             | Retrieves a list of all game reviews | everyone | -                                       |
 | `POST /api/v1/review`            | Creates a new game review | authenticated user | ![json](https://i.ibb.co/3Sbdy6z/1.png) |
 | `DELETE /api/v1/review/:id`      | Deletes a game review by its id | admin | -                                       |
 | `PUT /api/v1/review/:id`         | Updates a game review by its id | admin | ![json](https://i.ibb.co/Gn2Ps0W/1.png) |
-
-### User
-| Request                          | Description | Access | Body                                    |
-|----------------------------------| --- | --- |-----------------------------------------|
+| **User**                         |  |  |                                    |
 | `POST /api/v1/auth/register`     | Registers a new user | everyone | ![json](https://i.ibb.co/MVYknyY/1.png) |
 | `POST /api/v1/auth/authenticate` | Authenticates a user | everyone | ![json](https://i.ibb.co/MVYknyY/1.png) |
 | `GET /api/v1/auth/logout`        | Logs out a user | authenticated user | -                                       |
