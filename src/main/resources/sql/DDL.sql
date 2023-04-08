@@ -1,3 +1,5 @@
+-- tables
+-- Table: Game
 CREATE TABLE Game (
     ID int  NOT NULL AUTO_INCREMENT,
     name varchar(50)  NOT NULL,
@@ -12,6 +14,15 @@ CREATE TABLE Game_Type (
     ID int  NOT NULL AUTO_INCREMENT,
     name varchar(20)  NOT NULL,
     CONSTRAINT Game_Type_pk PRIMARY KEY (ID)
+);
+
+-- Table: Review
+CREATE TABLE Review (
+    ID int  NOT NULL AUTO_INCREMENT,
+    rating int NOT NULL,
+    description varchar(1000)  NOT NULL,
+    game_ID int  NOT NULL,
+    CONSTRAINT Review_pk PRIMARY KEY (ID)
 );
 
 -- Table: Role
@@ -53,6 +64,10 @@ CREATE TABLE User_Role (
 ALTER TABLE Game ADD CONSTRAINT Game_Game_Type FOREIGN KEY Game_Game_Type (game_type_ID)
     REFERENCES Game_Type (ID);
 
+-- Reference: Review_Game (table: Review)
+ALTER TABLE Review ADD CONSTRAINT Review_Game FOREIGN KEY Review_Game (game_ID)
+    REFERENCES Game (ID);
+
 -- Reference: Token_User (table: Token)
 ALTER TABLE Token ADD CONSTRAINT Token_User FOREIGN KEY Token_User (user_ID)
     REFERENCES Users (ID);
@@ -64,3 +79,5 @@ ALTER TABLE User_Role ADD CONSTRAINT User_Role_Role FOREIGN KEY User_Role_Role (
 -- Reference: User_Role_User (table: User_Role)
 ALTER TABLE User_Role ADD CONSTRAINT User_Role_User FOREIGN KEY User_Role_User (user_ID)
     REFERENCES Users (ID);
+
+-- End of file.

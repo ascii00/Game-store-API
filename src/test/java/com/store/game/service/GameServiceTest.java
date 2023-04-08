@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -49,7 +50,7 @@ public class GameServiceTest {
     void getByIdNotFound() {
         when(gameRepository.findById(1)).thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> gameService.getById(1));
+        assertThrows(NoSuchElementException.class, () -> gameService.getById(1));
     }
 
     @Test
@@ -106,7 +107,7 @@ public class GameServiceTest {
 
         when(gameRepository.findById(1)).thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> gameService.update(1, updatedGame));
+        assertThrows(NoSuchElementException.class, () -> gameService.update(1, updatedGame));
     }
 
     @Test
@@ -120,7 +121,7 @@ public class GameServiceTest {
         when(gameRepository.findById(1)).thenReturn(Optional.of(game));
         when(gameTypeRepository.findByName("RPG")).thenReturn(null);
 
-        assertThrows(IllegalArgumentException.class, () -> gameService.update(1, updatedGame));
+        assertThrows(NoSuchElementException.class, () -> gameService.update(1, updatedGame));
     }
 
     @Test
@@ -158,6 +159,6 @@ public class GameServiceTest {
     void deleteByIdNotFound() {
         when(gameRepository.findById(1)).thenReturn(Optional.empty());
 
-        assertThrows(IllegalArgumentException.class, () -> gameService.deleteById(1));
+        assertThrows(NoSuchElementException.class, () -> gameService.deleteById(1));
     }
 }

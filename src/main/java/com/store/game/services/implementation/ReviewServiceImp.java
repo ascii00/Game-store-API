@@ -9,6 +9,7 @@ import com.store.game.services.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -25,7 +26,7 @@ public class ReviewServiceImp implements ReviewService {
     public void create(ReviewDTO review) {
         Optional<Game> game = gameRepository.findById(review.getGameId());
         if (game.isEmpty()) {
-            throw new IllegalArgumentException("Game not found");
+            throw new NoSuchElementException("Game not found");
         }
         Review newReview = new Review(review.getRating(),
                                       review.getDescription(),
@@ -35,7 +36,7 @@ public class ReviewServiceImp implements ReviewService {
 
     public void deleteById(int id) {
         if (reviewRepository.findById(id).isEmpty()){
-            throw new IllegalArgumentException("Review not found");
+            throw new NoSuchElementException("Review not found");
         }
         reviewRepository.deleteById(id);
     }
@@ -44,10 +45,10 @@ public class ReviewServiceImp implements ReviewService {
         Optional<Review> reviewToEdit = reviewRepository.findById(id);
         Optional<Game> game = gameRepository.findById(updatedReview.getGameId());
         if (reviewToEdit.isEmpty()) {
-            throw new IllegalArgumentException("Review not found");
+            throw new NoSuchElementException("Review not found");
         }
         if (game.isEmpty()) {
-            throw new IllegalArgumentException("Game not found");
+            throw new NoSuchElementException("Game not found");
         }
         Review review = reviewToEdit.get();
         review.setRating(updatedReview.getRating());

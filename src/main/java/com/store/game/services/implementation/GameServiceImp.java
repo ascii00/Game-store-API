@@ -8,6 +8,8 @@ import com.store.game.repositories.GameTypeRepository;
 import com.store.game.services.GameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -20,7 +22,7 @@ public class GameServiceImp implements GameService {
     public Game getById(int id) {
         Optional<Game> game = gameRepository.findById(id);
         if (game.isEmpty()) {
-            throw new IllegalArgumentException("Game not found");
+            throw new NoSuchElementException("Game not found");
         }
         return game.get();
     }
@@ -36,7 +38,7 @@ public class GameServiceImp implements GameService {
     public void create(GameDTO game) {
         Optional<GameType> gameType = Optional.ofNullable(gameTypeRepository.findByName(game.getGameType()));
         if (gameType.isEmpty()) {
-            throw new IllegalArgumentException("Game type not found");
+            throw new NoSuchElementException("Game type not found");
         }
         Game newGame = new Game(game.getName(),
                                 game.getDescription(),
@@ -47,7 +49,7 @@ public class GameServiceImp implements GameService {
 
     public void deleteById(int id) {
         if (gameRepository.findById(id).isEmpty()){
-            throw new IllegalArgumentException("Game not found");
+            throw new NoSuchElementException("Game not found");
         }
         gameRepository.deleteById(id);
     }
@@ -56,10 +58,10 @@ public class GameServiceImp implements GameService {
         Optional<Game> gameToEdit = gameRepository.findById(id);
         Optional<GameType> gameType = Optional.ofNullable(gameTypeRepository.findByName(newGame.getGameType()));
         if (gameType.isEmpty()) {
-            throw new IllegalArgumentException("Game type not found");
+            throw new NoSuchElementException("Game type not found");
         }
         if (gameToEdit.isEmpty()) {
-            throw new IllegalArgumentException("Game not found");
+            throw new NoSuchElementException("Game not found");
         }
         Game game = gameToEdit.get();
         game.setName(newGame.getName());

@@ -1,76 +1,134 @@
 package com.store.game.controllers;
 
 import com.store.game.models.GameType;
-import com.store.game.response.Response;
-import com.store.game.response.SuccessResponse;
-import com.store.game.services.GameTypeService;
+import com.store.game.repositories.GameTypeRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Arrays;
-import java.util.List;
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.*;
-
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest(properties = "spring.config.name=application-test")
+@AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class GameTypeControllerTest {
-    @InjectMocks
-    private GameTypeController gameTypeController;
 
-    @Mock
-    private GameTypeService gameTypeService;
+    @Autowired
+    private MockMvc mockMvc;
+    @Autowired
+    private GameTypeRepository gameTypeRepository;
+    private GameType gameType1;
+    private GameType gameType2;
 
-    @Test
-    void getById() {
-        GameType gameType = new GameType("RPG");
-        gameType.setId(1);
+    @BeforeEach
+    public void setUp() {
+        gameTypeRepository.deleteAll();
 
-        when(gameTypeService.getById(1)).thenReturn(gameType);
-        ResponseEntity<Response> response = gameTypeController.getById(1);
+        gameType1 = new GameType("Action");
+        gameType2 = new GameType("Adventure");
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(gameType, ((SuccessResponse<GameType>) response.getBody()).getData());
-        verify(gameTypeService, times(1)).getById(1);
+        gameTypeRepository.save(gameType1);
+        gameTypeRepository.save(gameType2);
     }
 
     @Test
-    void getAll() {
-        GameType gameType1 = new GameType("RPG");
-        GameType gameType2 = new GameType("Action");
-
-        List<GameType> gameTypes = Arrays.asList(gameType1, gameType2);
-        when(gameTypeService.getAll()).thenReturn(gameTypes);
-        ResponseEntity<Response> response = gameTypeController.getAll();
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(gameTypes, ((SuccessResponse<Iterable<GameType>>) response.getBody()).getData());
-        verify(gameTypeService, times(1)).getAll();
+    public void getAllGameTypes() throws Exception {
+        mockMvc.perform(get("/api/v1/gameType/all"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data", hasSize(2)))
+                .andExpect(jsonPath("$.data[0].name", is("Action")))
+                .andExpect(jsonPath("$.data[1].name", is("Adventure")));
     }
 
     @Test
-    void deleteGameType() {
-        int gameId = 1;
-        ResponseEntity<Response> response = gameTypeController.deleteGameType(gameId);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNull(((SuccessResponse<?>) response.getBody()).getData());
-        verify(gameTypeService, times(1)).deleteById(gameId);
+    public void getGameTypeById() throws Exception {
+        mockMvc.perform(get("/api/v1/gameType/{id}", gameType1.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.name", is("Action")));
     }
 
     @Test
-    void createGameType() {
-        GameType gameType = new GameType("RPG");
-        ResponseEntity<Response> response = gameTypeController.createGameType(gameType);
+    public void getGameTypeByIdNotFound() throws Exception {
+        mockMvc.perform(get("/api/v1/gameType/-1"))
+                .andExpect(status().isNotFound());
+    }
 
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertNull(((SuccessResponse<?>) response.getBody()).getData());
-        verify(gameTypeService, times(1)).create(gameType);
+    @Test
+    public void unauthorizedCreate() throws Exception {
+        mockMvc.perform(post("/api/v1/gameType")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\": \"Strategy\"}"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void createWithUserRole() throws Exception {
+        mockMvc.perform(post("/api/v1/gameType")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\": \"Strategy\"}"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void createGameType() throws Exception {
+        mockMvc.perform(post("/api/v1/gameType")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\": \"Strategy\"}"))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(get("/api/v1/gameType/all"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data", hasSize(3)))
+                .andExpect(jsonPath("$.data[2].name", is("Strategy")));
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void createGameTypeAlreadyExists() throws Exception {
+        mockMvc.perform(post("/api/v1/gameType")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\": \"Action\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void unauthorizedDelete() throws Exception {
+        mockMvc.perform(delete("/api/v1/gameType/{id}", gameType1.getId()))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void deleteWithUserRole() throws Exception {
+        mockMvc.perform(delete("/api/v1/gameType/{id}", gameType1.getId()))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void deleteGameType() throws Exception {
+        mockMvc.perform(delete("/api/v1/gameType/{id}", gameType1.getId()))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get("/api/v1/gameType/all"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data", hasSize(1)));
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    public void deleteGameTypeNotFound() throws Exception {
+        mockMvc.perform(delete("/api/v1/gameType/-1"))
+                .andExpect(status().isNotFound());
     }
 }

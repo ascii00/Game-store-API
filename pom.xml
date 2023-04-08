@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.store.game</groupId>
     <artifactId>game-store-API</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>game-store-API</name>
     <description>game-store-API</description>
     <properties>
@@ -80,6 +80,11 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.11.5</version>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -96,6 +101,22 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <parallel>none</parallel>
+                    <environmentVariables>
+                        <CONNECTION_STRING>${env.CONNECTION_STRING}</CONNECTION_STRING>
+                        <DB_LOGIN>${env.DB_LOGIN}</DB_LOGIN>
+                        <DB_PASS>${env.DB_PASS}</DB_PASS>
+                        <SECRET_KEY>${env.SECRET_KEY}</SECRET_KEY>
+                        <SENDGRID_API>${env.SENDGRID_API}</SENDGRID_API>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

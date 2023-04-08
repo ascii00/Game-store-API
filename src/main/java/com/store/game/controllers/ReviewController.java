@@ -45,5 +45,4 @@ public class ReviewController {
         reviewService.deleteById(id);
         return ResponseEntity.ok().body(new SuccessResponse<>(null));
     }
-
 }
