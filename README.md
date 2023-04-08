@@ -71,29 +71,152 @@ such as the token string, type, and whether it has been revoked or expired.
 
 ## API
 
-| Request                          | Description | Access | Body                                    |
-|----------------------------------| -- | --- |-----------------------------------------|
-| **Game**                         |  |  |   |
-| `GET /api/v1/game/all`           | Retrieves a list of all games | everyone | -                                       |
-| `GET /api/v1/game/byId/:id`      | Retrieves a game by its id | everyone | -                                       |
-| `GET /api/v1/game/byName/:name`  | Retrieves a game by its name | everyone | -                                       |
-| `PUT /api/v1/game/:id`           | Updates a game by its id | admin | ![json](https://i.ibb.co/Fht4C3M/1.png) |
-| `POST /api/v1/game`              | Creates a new game | admin | ![json](https://i.ibb.co/9hNYDzb/1.png) |
-| `DELETE /api/v1/game/:id`        | Deletes a game by its id | admin | -                                       |
-| **Game Type**                    |  |  | |
-| `GET /api/v1/gameType/all`       | Retrieves a list of all game types | everyone | -                                       |
-| `GET /api/v1/gameType/:id`       | Retrieves a game type by its id | everyone | -                                       |
-| `POST /api/v1/gameType/:id`      | Creates a new game type | admin | ![json](https://i.ibb.co/Kx0FGPW/1.png) |
-| `DELETE /api/v1/gameType/:id`    | Deletes a game type by its id | admin | -                                       |
-| **Review**                       |  |  | |
-| `GET /api/v1/review`             | Retrieves a list of all game reviews | everyone | -                                       |
-| `POST /api/v1/review`            | Creates a new game review | authenticated user | ![json](https://i.ibb.co/3Sbdy6z/1.png) |
-| `DELETE /api/v1/review/:id`      | Deletes a game review by its id | admin | -                                       |
-| `PUT /api/v1/review/:id`         | Updates a game review by its id | admin | ![json](https://i.ibb.co/Gn2Ps0W/1.png) |
-| **User**                         |  |  |                                    |
-| `POST /api/v1/auth/register`     | Registers a new user | everyone | ![json](https://i.ibb.co/MVYknyY/1.png) |
-| `POST /api/v1/auth/authenticate` | Authenticates a user | everyone | ![json](https://i.ibb.co/MVYknyY/1.png) |
-| `GET /api/v1/auth/logout`        | Logs out a user | authenticated user | -                                       |
+### Game
+
+`GET /api/v1/game/all`
+
+Retrieves a list of all games.
+Access: everyone
+
+`GET /api/v1/game/byId/:id`
+
+Retrieves a game by its id.
+Access: everyone
+
+`GET /api/v1/game/byName/:name`
+
+Retrieves a game by its name.
+Access: everyone
+
+`PUT /api/v1/game/:id`
+
+Updates a game by its id.
+Access: admin
+Body:
+```json
+{
+  "name": "string", 
+  "description": "string", 
+  "price": 0, 
+  "gameTypeId": 0
+}
+```
+
+`POST /api/v1/game`
+
+Creates a new game.
+Access: admin
+Body:
+```json
+{
+  "name": "string", 
+  "description": "string", 
+  "price": 0, 
+  "gameTypeId": 0
+}
+```
+
+`DELETE /api/v1/game/:id`
+
+Deletes a game by its id.
+Access: admin
+
+### Game Type
+
+`GET /api/v1/gameType/all`
+
+Retrieves a list of all game types.
+Access: everyone
+
+`GET /api/v1/gameType/:id`
+
+Retrieves a game type by its id.
+Access: everyone
+
+`POST /api/v1/gameType/:id`
+
+Creates a new game type.
+Access: admin
+Body:
+```json
+{
+  "name": "string"
+}
+```
+
+`DELETE /api/v1/gameType/:id`
+
+Deletes a game type by its id.
+Access: admin
+
+### Game Review
+
+`GET /api/v1/review`
+
+Retrieves a list of all game reviews.
+Access: everyone
+
+`POST /api/v1/review`
+
+Creates a new game review.
+Access: authenticated user
+Body:
+```json
+{
+  "rating": 0, 
+  "description": "string",
+  "gameId": 0
+}
+```
+
+`DELETE /api/v1/review/:id`
+
+Deletes a game review by its id.
+Access: admin
+
+`PUT /api/v1/review/:id`
+
+Updates a game review by its id.
+Access: admin
+Body:
+```json
+{
+  "rating": 0, 
+  "description": "string",
+  "gameId": 0
+}
+```
+
+### User
+
+`POST /api/v1/auth/register`
+
+Registers a new user.
+access: everyone
+Body:
+```json
+{
+  "email": "string", 
+  "password": "string"
+}
+```
+
+`POST /api/v1/auth/authenticate`
+
+Authenticates a user.
+access: everyone
+Body:
+```json
+{
+  "email": "string", 
+  "password": "string"
+}
+```
+
+`GET /api/v1/auth/logout`
+
+Logs out a user.
+access: authenticated user
 
 ### Success Response
 All went well, and (usually) some data was returned.
