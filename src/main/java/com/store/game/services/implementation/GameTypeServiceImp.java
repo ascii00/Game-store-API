@@ -6,6 +6,7 @@ import com.store.game.services.GameTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -18,7 +19,7 @@ public class GameTypeServiceImp implements GameTypeService {
     public GameType getById(int id) {
         Optional<GameType> gameType = gameTypeRepository.findById(id);
         if (gameType.isEmpty())
-            throw new IllegalArgumentException("Game type not found");
+            throw new NoSuchElementException("Game type not found");
         return gameType.get();
     }
 
@@ -29,13 +30,16 @@ public class GameTypeServiceImp implements GameTypeService {
 
     @Override
     public void create(GameType gameType) {
+        if (gameTypeRepository.findByName(gameType.getName()) != null) {
+            throw new IllegalArgumentException("Game type already exists");
+        }
         gameTypeRepository.save(gameType);
     }
 
     @Override
     public void deleteById(int id) {
         if (gameTypeRepository.findById(id).isEmpty())
-            throw new IllegalArgumentException("Game type not found");
+            throw new NoSuchElementException("Game type not found");
         gameTypeRepository.deleteById(id);
     }
 }

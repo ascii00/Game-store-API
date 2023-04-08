@@ -55,7 +55,7 @@ public class AuthenticationServiceImp implements AuthenticationService {
         User savedUser = userRepository.save(user);
         String jwtToken = jwtService.generateToken(user);
 
-        if (isEmailConfirmationRequired.equalsIgnoreCase("true")){
+        if (isEmailConfirmationRequired != null && isEmailConfirmationRequired.equalsIgnoreCase("true")){
             emailService.sendConfirmationEmail(user);
         } else {
             savedUser.setConfirmed(true);

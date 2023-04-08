@@ -17,4 +17,10 @@ public class ReviewDTO {
 
     @NotNull(message = "Game is required")
     private int gameId;
+
+    public ReviewDTO(int rating, String description, int gameId) {
+        this.rating = rating;
+        this.description = description;
+        this.gameId = gameId;
+    }
 }

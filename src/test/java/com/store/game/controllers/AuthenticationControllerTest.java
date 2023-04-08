@@ -2,74 +2,154 @@ package com.store.game.controllers;
 
 import com.store.game.models.DTO.AuthenticationRequest;
 import com.store.game.models.DTO.RegisterRequest;
-import com.store.game.response.Response;
-import com.store.game.response.SuccessResponse;
-import com.store.game.models.DTO.AuthenticationResponse;
-import com.store.game.security.EmailService;
-import com.store.game.services.AuthenticationService;
+import com.store.game.models.Role;
+import com.store.game.models.User;
+import com.store.game.models.enums.ERole;
+import com.store.game.repositories.RoleRepository;
+import com.store.game.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest(properties = "spring.config.name=application-test")
+@AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class AuthenticationControllerTest {
-    @InjectMocks
-    private AuthenticationController authenticationController;
 
-    @Mock
-    private AuthenticationService authenticationService;
+    @Autowired
+    private MockMvc mockMvc;
+    @Autowired
+    private ObjectMapper objectMapper;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    @Mock
-    private EmailService emailConfirmation;
-
-    private RegisterRequest registerRequest;
-    private AuthenticationRequest authenticationRequest;
-    private AuthenticationResponse authenticationResponse;
+    private final String password = "test_p@ssworD13";
 
     @BeforeEach
-    void setUp() {
-        registerRequest = new RegisterRequest("test@example.com", "password123");
-        authenticationRequest = new AuthenticationRequest("test@example.com", "password123");
-        authenticationResponse = AuthenticationResponse.builder().token("jwtToken").build();
+    public void setup() {
+        userRepository.deleteAll();
+        roleRepository.deleteAll();
+        roleRepository.save(new Role(ERole.ROLE_USER));
+        userRepository.save(new User("test1@example.com", passwordEncoder.encode(password), roleRepository.findByName(ERole.ROLE_USER).get()));
     }
 
     @Test
-    void registerTest() {
-        when(authenticationService.register(registerRequest)).thenReturn(authenticationResponse);
+    public void register() throws Exception {
+        RegisterRequest registerRequest = RegisterRequest.builder()
+                .email("test2@example.com")
+                .password(password)
+                .build();
 
-        ResponseEntity<Response> response = authenticationController.register(registerRequest);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(authenticationResponse, ((SuccessResponse<AuthenticationResponse>) response.getBody()).getData());
-        verify(authenticationService, times(1)).register(registerRequest);
+        mockMvc.perform(post("/api/v1/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(registerRequest)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.token").isNotEmpty());
     }
 
     @Test
-    void authenticateTest() {
-        when(authenticationService.authenticate(authenticationRequest)).thenReturn(authenticationResponse);
-        ResponseEntity<Response> response = authenticationController.authenticate(authenticationRequest);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(authenticationResponse, ((SuccessResponse<AuthenticationResponse>) response.getBody()).getData());
-        verify(authenticationService, times(1)).authenticate(authenticationRequest);
+    public void registerWithExistingEmail() throws Exception {
+        RegisterRequest registerRequest = RegisterRequest.builder()
+                .email("test1@example.com")
+                .password(password)
+                .build();
+        MvcResult result = mockMvc.perform(post("/api/v1/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(registerRequest)))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+        String responseJson = result.getResponse().getContentAsString();
+        assertEquals("{\"status\":\"fail\",\"data\":\"Email already exists\"}", responseJson);
     }
 
     @Test
-    void confirmEmailTest() {
-        String token = "token";
-        doNothing().when(emailConfirmation).confirmEmail(token);
-        ResponseEntity<Response> response = authenticationController.confirmEmail(token);
+    public void registerWithInvalidEmail() throws Exception {
+        RegisterRequest registerRequest = RegisterRequest.builder()
+                .email("test1example.com")
+                .password(password)
+                .build();
+        MvcResult result = mockMvc.perform(post("/api/v1/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(registerRequest)))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+        String responseJson = result.getResponse().getContentAsString();
+        assertEquals("{\"status\":\"fail\",\"data\":[\"Email must be a valid email address\"]}", responseJson);
+    }
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        verify(emailConfirmation, times(1)).confirmEmail(token);
+    @Test
+    public void registerWithInvalidPassword() throws Exception {
+        RegisterRequest registerRequest = RegisterRequest.builder()
+                .email("test2example.com")
+                .password("test")
+                .build();
+        MvcResult result = mockMvc.perform(post("/api/v1/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(registerRequest)))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+        String responseJson = result.getResponse().getContentAsString();
+        assertEquals("{\"status\":\"fail\",\"data\":\"Password is not valid (Password must be at least 8 characters long, contain at least one number, one uppercase and one lowercase letter)\"}", responseJson);
+    }
+
+    @Test
+    public void authenticate() throws Exception {
+        AuthenticationRequest authenticationRequest = AuthenticationRequest.builder()
+                .email("test1@example.com")
+                .password(password)
+                .build();
+
+        mockMvc.perform(post("/api/v1/auth/authenticate")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(authenticationRequest)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.token").isNotEmpty());
+    }
+
+    @Test
+    public void authenticateWithInvalidEmail() throws Exception {
+        AuthenticationRequest authenticationRequest = AuthenticationRequest.builder()
+                .email("test2example.com")
+                .password(password)
+                .build();
+        MvcResult result = mockMvc.perform(post("/api/v1/auth/authenticate")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(authenticationRequest)))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+        String responseJson = result.getResponse().getContentAsString();
+        assertEquals("{\"status\":\"fail\",\"data\":\"Invalid email or password\"}", responseJson);
+    }
+
+    @Test
+    public void authenticateNonExistingUser() throws Exception {
+        AuthenticationRequest authenticationRequest = AuthenticationRequest.builder()
+                .email("test3@example.com")
+                .password(password)
+                .build();
+        MvcResult result = mockMvc.perform(post("/api/v1/auth/authenticate")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(authenticationRequest)))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+        String responseJson = result.getResponse().getContentAsString();
+        assertEquals("{\"status\":\"fail\",\"data\":\"Invalid email or password\"}", responseJson);
     }
 }
 

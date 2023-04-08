@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 import static org.springframework.http.HttpStatus.*;
@@ -36,6 +37,12 @@ public class ExceptionHandlerController {
     public ResponseEntity<Response> handleIllegalArgument(IllegalArgumentException ex) {
         log.warn("IllegalArgumentException occurred: {}", ex.getMessage());
         return ResponseEntity.status(BAD_REQUEST).body(new FailResponse<>(ex.getMessage()));
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<Response> handleNoSuchElement(NoSuchElementException ex) {
+        log.warn("NoSuchElementException occurred: {}", ex.getMessage());
+        return ResponseEntity.status(NOT_FOUND).body(new FailResponse<>(ex.getMessage()));
     }
 
     @ExceptionHandler(UsernameNotFoundException.class)
