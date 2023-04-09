@@ -76,23 +76,23 @@ such as the token string, type, and whether it has been revoked or expired.
 `GET /api/v1/game/all`
 
 Retrieves a list of all games.
-Access: everyone
+</br>Access: everyone
 
 `GET /api/v1/game/byId/:id`
 
 Retrieves a game by its id.
-Access: everyone
+</br>Access: everyone
 
 `GET /api/v1/game/byName/:name`
 
 Retrieves a game by its name.
-Access: everyone
+</br>Access: everyone
 
 `PUT /api/v1/game/:id`
 
 Updates a game by its id.
-Access: admin
-Body:
+</br>Access: admin
+</br>Body:
 ```json
 {
   "name": "string", 
@@ -105,8 +105,8 @@ Body:
 `POST /api/v1/game`
 
 Creates a new game.
-Access: admin
-Body:
+</br>Access: admin
+</br>Body:
 ```json
 {
   "name": "string", 
@@ -119,25 +119,25 @@ Body:
 `DELETE /api/v1/game/:id`
 
 Deletes a game by its id.
-Access: admin
+</br>Access: admin
 
 ### Game Type
 
 `GET /api/v1/gameType/all`
 
 Retrieves a list of all game types.
-Access: everyone
+</br>Access: everyone
 
 `GET /api/v1/gameType/:id`
 
 Retrieves a game type by its id.
-Access: everyone
+</br>Access: everyone
 
 `POST /api/v1/gameType/:id`
 
 Creates a new game type.
-Access: admin
-Body:
+</br>Access: admin
+</br>Body:
 ```json
 {
   "name": "string"
@@ -147,20 +147,20 @@ Body:
 `DELETE /api/v1/gameType/:id`
 
 Deletes a game type by its id.
-Access: admin
+</br>Access: admin
 
 ### Game Review
 
 `GET /api/v1/review`
 
 Retrieves a list of all game reviews.
-Access: everyone
+</br>Access: everyone
 
 `POST /api/v1/review`
 
 Creates a new game review.
-Access: authenticated user
-Body:
+</br>Access: authenticated user
+</br>Body:
 ```json
 {
   "rating": 0, 
@@ -172,13 +172,13 @@ Body:
 `DELETE /api/v1/review/:id`
 
 Deletes a game review by its id.
-Access: admin
+</br>Access: admin
 
 `PUT /api/v1/review/:id`
 
 Updates a game review by its id.
-Access: admin
-Body:
+</br>Access: admin
+</br>Body:
 ```json
 {
   "rating": 0, 
@@ -192,8 +192,8 @@ Body:
 `POST /api/v1/auth/register`
 
 Registers a new user.
-access: everyone
-Body:
+</br>Access: everyone
+</br>Body:
 ```json
 {
   "email": "string", 
@@ -204,8 +204,8 @@ Body:
 `POST /api/v1/auth/authenticate`
 
 Authenticates a user.
-access: everyone
-Body:
+</br>Access: everyone
+</br>Body:
 ```json
 {
   "email": "string", 
@@ -216,7 +216,7 @@ Body:
 `GET /api/v1/auth/logout`
 
 Logs out a user.
-access: authenticated user
+</br>Access: authenticated user
 
 ### Success Response
 All went well, and (usually) some data was returned.
